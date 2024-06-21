@@ -1,0 +1,15 @@
+actor "Руководитель" as Manager
+actor "Исполнитель" as Employee
+
+usecase "Выдача задания" as AssignTask
+usecase "Отслеживание хода выполнения" as TrackProgress
+usecase "Учет рабочего времени" as LogWorkTime
+usecase "Просмотр отчетов" as ViewReports
+
+Manager -> AssignTask
+Manager -> TrackProgress
+Manager -> ViewReports
+
+Employee -> LogWorkTime
+Employee -> TrackProgress
+\
