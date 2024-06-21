@@ -1,3 +1,4 @@
+@startuml
 actor "Руководитель" as Manager
 actor "Исполнитель" as Employee
 
@@ -12,4 +13,5 @@ Manager -> ViewReports
 
 Employee -> LogWorkTime
 Employee -> TrackProgress
-\
+
+@enduml
