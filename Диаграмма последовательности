@@ -1,0 +1,13 @@
+@startuml
+actor Employee
+participant Task
+participant TimeLog
+participant Database
+
+Employee -> Task : выбрать задание
+Employee -> TimeLog : создать TimeLog
+TimeLog -> Database : сохранить TimeLog
+
+note right of Database : TimeLog сохраняется в базе данных
+
+@enduml
