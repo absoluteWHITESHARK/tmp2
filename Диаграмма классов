@@ -1,0 +1,70 @@
+@startuml
+package "Task Management" {
+    class Task {
+        +id: int
+        +title: String
+        +description: String
+        +startDate: Date
+        +dueDate: Date
+        +status: Status
+    }
+
+    enum Status {
+        TODO
+        IN_PROGRESS
+        DONE
+    }
+
+    class TimeLog {
+        +id: int
+        +date: Date
+        +hoursSpent: int
+        +taskId: int
+    }
+}
+
+package "User Management" {
+    class User {
+        +id: int
+        +name: String
+        +role: UserRole
+    }
+
+    enum UserRole {
+        MANAGER
+        EMPLOYEE
+    }
+
+    class Manager {
+        +assignTask(task: Task): void
+        +trackProgress(task: Task): void
+        +viewReports(): List<Report>
+    }
+
+    class Employee {
+        +logWorkTime(timeLog: TimeLog): void
+        +trackProgress(task: Task): void
+    }
+}
+
+package "Reports" {
+    class Report {
+        +id: int
+        +createdDate: Date
+        +generateReport(): void
+    }
+}
+
+User <|-- Manager
+User <|-- Employee
+
+Task "1" *-- "0..*" TimeLog : logs
+Task "1" *-- "0..1" Status : status
+
+Manager --> Task : manages
+Employee --> Task : works on
+Manager --> TimeLog : views
+Employee --> TimeLog : logs
+
+Manager --> Report : generates
+@enduml
